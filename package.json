@@ -4,6 +4,7 @@
   "description": "AZ Suite Proof Api",
   "main": "src/server.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "dev:debug": "nodemon --inspect",
@@ -24,7 +25,7 @@
     "mongoose": "^5.9.20"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.22",
     "sucrase": "^3.15.0"
   }
 }

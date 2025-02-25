@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './routes';
-
-import './database'
+import routes from './routes.js';
+import './database/index.js';
 
 class App {
   constructor() {
@@ -12,16 +11,25 @@ class App {
     this.routes();
   }
 
-  
   middlewares() {
-    //tamanho configurado no express e no nginx
-    this.server.use(express.json({limit: '100mb'}));
+    // Tamanho configurado no express e no nginx
+    this.server.use(express.json({ limit: '100mb' }));
   }
 
   routes() {
     this.server.use(cors());
     this.server.use(routes);
   }
+
+  start(port) {
+    this.server.listen(port, () => {
+      console.log(`Servidor rodando em http://localhost:${port}`);
+    });
+  }
 }
 
-export default new App().server;
+const app = new App();
+
+app.start(2402);
+
+export default app.server;

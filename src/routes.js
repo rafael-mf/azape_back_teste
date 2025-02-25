@@ -1,10 +1,10 @@
 //Importo somente a funcão router
 import { Router } from 'express';
 
-import DashboardsController from './app/controllers/DashboardsController';
-import SessionsController from './app/controllers/SessionsController';
+import DashboardsController from './app/controllers/DashboardsController.js';
+import SessionsController from './app/controllers/SessionsController.js';
 
-import authMiddleware from './app/middlewares/auth';
+import authMiddleware from './app/middlewares/auth.js';
 
 const routes = new Router();
 
@@ -13,6 +13,7 @@ const routes = new Router();
 routes.post('/proof/session', SessionsController.store);
 //################## PROOF #####################
 
+routes.get('/proof/dashboard', authMiddleware, DashboardsController.getOrders);
 //################## MIDDLEWARE AUTH #####################
 routes.use(authMiddleware);
 //################## MIDDLEWARE AUTH #####################

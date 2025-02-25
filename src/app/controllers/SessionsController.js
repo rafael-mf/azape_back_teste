@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import SHA256 from '@pozible/meteor-sha';
-import User from '../models/User';
-import authConfig from '../../config/auth';
+import User from '../models/User.js';
+import authConfig from '../../config/auth.js';
 
 class SessionsController {
   async store(req, res) {
@@ -11,11 +11,11 @@ class SessionsController {
         email,
         password
       } = req.body;
-
+      
       const user = await User.findOne({
         "emails.address": email.toLowerCase()
       }).select('+services.password.bcrypt');
-
+      
       if (!user) {
         return res.status(401).json({
           error: true,
